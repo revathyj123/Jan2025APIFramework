@@ -1,0 +1,13 @@
+{
+    "firstName": "ContactsAPI",
+    "lastName": "JSON",
+    "birthdate": "1992-02-02",
+    "email": "{{email}}",
+    "phone": "8005554242",
+    "street1": "13 School St.",
+    "street2": "Apt. 5",
+    "city": "Oakville",
+    "stateProvince": "ON",
+    "postalCode": "A1A1A1",
+    "country": "Canada"
+}

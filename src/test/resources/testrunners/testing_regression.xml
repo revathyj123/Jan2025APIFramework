@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="API Regression Test Suite">
+
+	<listeners>
+		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+	</listeners>
+
+	<test name="GOREST API Test - Get User">
+		<classes>
+			<class name="com.qa.api.gorest.tests.GetUserTest" />
+		</classes>
+	</test>
+
+	<test name="GOREST API Test - Create User">
+		<classes>
+			<class name="com.qa.api.gorest.tests.CreateUserTest" />
+		</classes>
+	</test>
+
+	<test name="GOREST API Test - Update User">
+		<classes>
+			<class name="com.qa.api.gorest.tests.DeleteUserTest" />
+		</classes>
+	</test>
+
+	<test name="GOREST API Test - Delete User">
+		<classes>
+			<class name="com.qa.api.gorest.tests.UpdateUserTest" />
+		</classes>
+	</test>
+
+
+	<test name="PRODUCT API Test - Get Products">
+		<classes>
+			<class name="com.qa.api.products.tests.ProductAPITest" />
+		</classes>
+	</test>
+
+	<test name="PRODUCT API Test - Get Products with JSONPath">
+		<classes>
+			<class name="com.qa.api.products.tests.ProductAPIJsonPathTest" />
+		</classes>
+	</test>
+
+
+	<test name="SCHEMA API Test">
+		<classes>
+			<class name="com.qa.api.schema.tests.GoRestAPISchemaTest" />
+		</classes>
+	</test>
+
+
+	<test name="AMADEUS API Test">
+		<classes>
+			<class name="com.qa.api.amadeus.tests.AmadeusAPITests" />
+		</classes>
+	</test>
+
+
+	<test name="BASIC AUTH API Test">
+		<classes>
+			<class name="com.qa.api.basicauth.tests.BasicAuthTest" />
+		</classes>
+	</test>
+
+
+</suite>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="API Regression Test Suite">
+
+	<listeners>
+		<!--listener class-name="com.aventstack.chaintest.testng.ChainTestListener" /-->
+	</listeners>
+
+	<test name="SCHEMA API Test">
+		<classes>
+			<class name="com.qa.api.schema.tests.GoRestAPISchemaTest" />
+		</classes>
+	</test>
+
+</suite>
