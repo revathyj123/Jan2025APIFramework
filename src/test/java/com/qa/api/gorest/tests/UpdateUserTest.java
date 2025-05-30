@@ -19,8 +19,13 @@ public class UpdateUserTest extends BaseTest {
 		// User user=new User("Revathy", "female", "Revatest@testapi.com", "active");
 
 		// 1. Create a User using POJO with Lombok
-		User user = User.builder().name("Revathy").gender("female").email(StringUtils.generateRandomEmailId())
-				.status("active").build();
+		
+		User user = User.builder()
+				.name("Revathy")
+				.gender("female")
+				.email(StringUtils.generateRandomEmailId())
+				.status("active")
+				.build();
 
 		Response responsePOST = restClient.post(BASE_URL_GOREST, GOREST_USERS_ENDPOINT, user, null, null,
 				AuthType.BEARER_TOKEN, ContentType.JSON, GOREST_CONFIG_KEY);
