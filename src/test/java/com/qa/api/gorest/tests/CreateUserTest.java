@@ -46,10 +46,10 @@ public class CreateUserTest extends BaseTest {
 		//User user = new User(null, name, gender, StringUtils.generateRandomEmailId(), status);
 		
 		User user = User.builder()
-				.name("Revathy")
-				.gender("female")
+				.name(name)
+				.gender(gender)
 				.email(StringUtils.generateRandomEmailId())
-				.status("active")
+				.status(status)
 				.build();
 		
 		Response response = restClient.post(BASE_URL_GOREST, GOREST_USERS_ENDPOINT, user, null, null,
