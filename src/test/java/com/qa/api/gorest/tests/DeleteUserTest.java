@@ -21,7 +21,6 @@ public class DeleteUserTest extends BaseTest {
 		// 1. Create a User using POJO with Lombok
 		User user = User.builder().name("Revathy").gender("female").email(StringUtils.generateRandomEmailId())
 				.status("active").build();
-
 		Response responsePOST = restClient.post(BASE_URL_GOREST, GOREST_USERS_ENDPOINT, user, null, null,
 				AuthType.BEARER_TOKEN, ContentType.JSON, GOREST_CONFIG_KEY);
 		Assert.assertEquals(responsePOST.jsonPath().getString("name"), "Revathy");
