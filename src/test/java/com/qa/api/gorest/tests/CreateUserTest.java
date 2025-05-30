@@ -43,7 +43,15 @@ public class CreateUserTest extends BaseTest {
 	
 	@Test(dataProvider="getExcelUserData")
 	public void createAUserTest(String name, String gender, String status) {
-		User user = new User(null, name, gender, StringUtils.generateRandomEmailId(), status);
+		//User user = new User(null, name, gender, StringUtils.generateRandomEmailId(), status);
+		
+		User user = User.builder()
+				.name("Revathy")
+				.gender("female")
+				.email(StringUtils.generateRandomEmailId())
+				.status("active")
+				.build();
+		
 		Response response = restClient.post(BASE_URL_GOREST, GOREST_USERS_ENDPOINT, user, null, null,
 				AuthType.BEARER_TOKEN, ContentType.JSON, GOREST_CONFIG_KEY);
 		
