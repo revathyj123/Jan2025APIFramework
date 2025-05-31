@@ -47,7 +47,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.38</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -139,14 +138,6 @@
 				<configuration>
 					<source>23</source>
 					<target>23</target>
-					<parameters>true</parameters>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>1.18.38</version>
-						</path>
-					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 
@@ -159,8 +150,9 @@
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
 					<suiteXmlFiles>
-						<suiteXmlFile>
-							src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>
+						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+						<!--  <suiteXmlFile>src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>  -->
+
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
