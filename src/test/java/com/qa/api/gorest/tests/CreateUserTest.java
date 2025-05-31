@@ -32,7 +32,8 @@ public class CreateUserTest extends BaseTest {
 		return new Object[][] {
 			{"Revathy", "female", "active"},
 			{"Tester2", "female", "inactive"},
-			{"Tester3", "male", "active"}
+			{"Tester3", "male", "active"},
+			{"Tester4", "male", "active"}
 		};
 	}
 	
@@ -41,7 +42,7 @@ public class CreateUserTest extends BaseTest {
 		return ExcelUtil.readExcelData(AppConstants.CREATE_USER_SHEET_NAME);
 	}
 	
-	@Test(dataProvider="getExcelUserData")
+	@Test(dataProvider="getUserData")
 	public void createAUserTest(String name, String gender, String status) {
 		//User user = new User(null, name, gender, StringUtils.generateRandomEmailId(), status);
 		
