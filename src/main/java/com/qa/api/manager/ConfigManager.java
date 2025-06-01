@@ -9,7 +9,17 @@ public class ConfigManager {
 	private static Properties properties = new Properties();
 	
 	static {
-		InputStream input= ConfigManager.class.getClassLoader().getResourceAsStream("config/config.properties");
+		
+		//mvn clean install -Denv=qa/dev/uat/prod/stage
+		//mvn clean install -Denv=qa then config_qa.properties
+		//mvn clean install - if env is not given then run tcs On QA env by default
+		//env - environment variable(System)
+		
+		String envName = System.getProperty("env", "qa");
+		System.out.println("Running test cases on env: "+ envName);
+		String fileName = "config_"+envName+".properties";//config_qa.properties
+		
+		InputStream input= ConfigManager.class.getClassLoader().getResourceAsStream(fileName);
 		if(input!=null) {
 			try {
 				properties.load(input);

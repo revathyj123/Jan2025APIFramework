@@ -36,16 +36,17 @@ public class BaseTest {
 	// *****API Base URLs - All APIs baseUrls will be stored here and can be
 	// reused****//
 
-	protected final static String BASE_URL_GOREST = "https://gorest.co.in";
-	protected final static String BASE_URL_CONTACTS = "https://thinking-tester-contact-list.herokuapp.com";
-	protected final static String BASE_URL_PRODUCTS = "https://fakestoreapi.com";
-	protected final static String BASE_URL_SPOTIFY_ALBUM = "https://api.spotify.com";
-	protected final static String BASE_URL_ERGAST_CIRCUIT = "https://ergast.com";
-	protected final static String BASE_URL_REQRES = "https://reqres.in";
+	protected static String BASE_URL_GOREST = null;	
+	protected static String BASE_URL_CONTACTS = null;
+	
+	protected static String BASE_URL_PRODUCTS = null;
+	protected static String BASE_URL_SPOTIFY_ALBUM = null;
+	protected static String BASE_URL_ERGAST_CIRCUIT = null;
+	protected static String BASE_URL_REQRES = null;
 
-	protected final static String BASE_URL_BASIC_AUTH = "https://the-internet.herokuapp.com";
-	protected final static String BASE_URL_OAUTH2_AMADEUS = "https://test.api.amadeus.com";
-	protected final static String BASE_URL_OAUTH2_SPOTIFY = "https://accounts.spotify.com";
+	protected static String BASE_URL_BASIC_AUTH = null;
+	protected static String BASE_URL_OAUTH2_AMADEUS = null;
+	protected static String BASE_URL_OAUTH2_SPOTIFY = null;
 
 	// *************API Endpoint URLs*****************//
 
@@ -63,8 +64,17 @@ public class BaseTest {
 	protected final static String OAUTH2_SPOTIFY_ENDPOINT = "/api/token";
 
 	@BeforeSuite
-	public void setUpAllureReport() {
+	public void initSetUp() {
 		RestAssured.filters(new AllureRestAssured());
+		BASE_URL_GOREST = ConfigManager.get("baseurl.gorest").trim();
+		BASE_URL_CONTACTS = ConfigManager.get("baseurl.contacts").trim();
+		BASE_URL_PRODUCTS = ConfigManager.get("baseurl.products").trim();
+		BASE_URL_SPOTIFY_ALBUM = ConfigManager.get("baseurl.spotify").trim();
+		BASE_URL_ERGAST_CIRCUIT = ConfigManager.get("baseurl.ergast").trim();
+		BASE_URL_REQRES = ConfigManager.get("baseurl.reqres").trim();
+		BASE_URL_BASIC_AUTH = ConfigManager.get("baseurl.basicauth").trim();
+		BASE_URL_OAUTH2_AMADEUS = ConfigManager.get("baseurl.amadeus").trim();
+		BASE_URL_OAUTH2_SPOTIFY = ConfigManager.get("baseurl.oauthspotify").trim();
 	}
 
 	@BeforeTest
