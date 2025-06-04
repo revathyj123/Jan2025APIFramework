@@ -27,12 +27,12 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: "${DOCKER_CREDENTIALS_ID}",
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
+                    usernameVariable: "${DOCKER_USER}",
+                    passwordVariable: "${DOCKER_PASS}"
                 )]) {
                     bat '''
                         echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
-                        docker push ${DOCKER_IMAGE}
+                        docker push "$env:{DOCKER_IMAGE}"
                        '''
                 }
             }
