@@ -7,9 +7,6 @@ test-output/
 *.log
 allure-results/
 
-# Docker
-DockerFile
-
 # Java Compilation Files
 .mtj.tmp/
 *.class
