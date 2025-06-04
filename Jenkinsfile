@@ -50,16 +50,17 @@ pipeline {
         stage('Run Sanity Tests on Dev') {
             steps {
                 script {
-                    def status = powershell(
-                        script: """
-                            docker run --rm -v \"$env:WORKSPACE:/app\" -w \"/app\" $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
-                        """,
-                        returnStatus: true
-                    )
-                    if (status != 0) {
-                        currentBuild.result = 'UNSTABLE'
-                    }
-                }
+				    def status = powershell(
+				        script: """
+				            docker run --rm -v \"$env:WORKSPACE:/app\" -w /app $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
+				        """,
+				        returnStatus: true
+				    )
+				    
+				    if (status != 0) {
+				        currentBuild.result = 'UNSTABLE'
+				    }
+				}
             }
         }
     }
