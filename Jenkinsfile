@@ -50,7 +50,7 @@ pipeline {
 		
 		                # Pushing the image
 		                echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
-		                docker push $env:DOCKER_IMAGE
+		                echo "docker push $env:DOCKER_IMAGE"
 		            '''
 		        }
 		    }
@@ -61,14 +61,14 @@ pipeline {
             }
         }
         
-        stage('Run Sanity Tests on Dev') {
+		stage('Run Sanity Tests on Dev') {
 		    steps {
 		        script {
 		            def status = powershell(
-		                script: """
+		                script: '''
 		                    echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
-		                    docker run --rm -v "$env:WORKSPACE:/app" -w "/app" $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
-		                """,
+		                    docker run --rm -v "$env:WORKSPACE:/app" -w "/app" "$env:DOCKER_IMAGE" mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
+		                ''',
 		                returnStatus: true
 		            )
 		            if (status != 0) {
