@@ -7,11 +7,15 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "jrevathy82/jan2025apiframework:${env.BUILD_NUMBER}"
-        echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
         DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
     }
-
+    
     stages {
+		stage('Print Docker Image') {
+    		steps {
+       			echo "DOCKER_IMAGE: ${env.DOCKER_IMAGE}"
+    		}
+		}
         stage('Checkout Code') {
             steps {
                 git 'https://github.com/revathyj123/Jan2025APIFramework.git'
