@@ -34,7 +34,7 @@ pipeline {
                 )]) {
                     powershell '''
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
-						echo "DOCKER_PASS: [hidden for security]"'''
+						echo "DOCKER_PASS: $env:DOCKER_PASS"'''
                 }
             }
         }
