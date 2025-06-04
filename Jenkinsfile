@@ -34,6 +34,7 @@ pipeline {
 
         stage('Push Docker Image to Docker Hub') {
             steps {
+				echo "DOCKER_IMAGE: ${env.DOCKER_IMAGE}"
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub_credentials',
                     usernameVariable: 'DOCKER_USER',
@@ -43,8 +44,8 @@ pipeline {
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
 						echo "DOCKER_PASS: $env:DOCKER_PASS"
 						echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
-						echo "DOCKER_IMAGE: ${env.DOCKER_IMAGE}"
-						docker push "${env.DOCKER_IMAGE}"
+						echo "DOCKER_IMAGE: $env.DOCKER_IMAGE"
+						docker push "$env.DOCKER_IMAGE"
 						'''
                 }
             }
