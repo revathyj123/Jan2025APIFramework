@@ -50,7 +50,7 @@ pipeline {
 		
 		                # Pushing the image
 		                echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
-		                echo docker push $env:DOCKER_IMAGE
+		                docker push $env:DOCKER_IMAGE
 		            '''
 		        }
 		    }
