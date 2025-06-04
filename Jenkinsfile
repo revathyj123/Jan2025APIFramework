@@ -65,12 +65,12 @@ pipeline {
 		    steps {
 		        script {
 		            def status = powershell(
-		                script: '''
-		                    echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
-		                    docker run --rm -v "$env:WORKSPACE:/app" -w "/app" "$env:DOCKER_IMAGE" mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
-		                ''',
-		                returnStatus: true
-		            )
+				    script: '''
+				        echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
+				        docker run --rm -v "$env:WORKSPACE:/app" -w "/app" $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
+				    ''',
+				    returnStatus: true
+					)
 		            if (status != 0) {
 		                currentBuild.result = 'UNSTABLE'
 		            }
