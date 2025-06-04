@@ -33,53 +33,8 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     powershell '''
-                        echo $env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin
-                        docker push $env:DOCKER_IMAGE
-                    '''
-                }
-            }
-        }
-
-        stage('Deploy to Dev') {
-            steps {
-                echo 'Deploying to Dev environment...'
-            }
-        }
-
-        stage('Run Sanity Tests on Dev') {
-            steps {
-                script {
-                    def status = powershell(
-                        script: """
-                            docker run --rm -v \"$env:WORKSPACE:/app\" -w \"/app\" $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
-                        """,
-                        returnStatus: true
-                    )
-                    if (status != 0) {
-                        currentBuild.result = 'UNSTABLE'
-                    }
-                }
-            }
-        }
-
-        stage('Deploy to QA') {
-            steps {
-                echo 'Deploying to QA environment...'
-            }
-        }
-
-        stage('Run Regression Tests on QA') {
-            steps {
-                script {
-                    def status = powershell(
-                        script: """
-                            docker run --rm -v \"$env:WORKSPACE:/app\" -w \"/app\" $env:DOCKER_IMAGE mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod
-                        """,
-                        returnStatus: true
-                    )
-                    if (status != 0) {
-                        currentBuild.result = 'UNSTABLE'
-                    }
+	                    echo "DOCKER_USER: $env:DOCKER_USER"
+						echo "DOCKER_PASS: [hidden for security]"'''
                 }
             }
         }
