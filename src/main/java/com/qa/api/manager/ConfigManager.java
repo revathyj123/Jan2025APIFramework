@@ -15,7 +15,7 @@ public class ConfigManager {
 		//mvn clean install - if env is not given then run tcs On QA env by default
 		//env - environment variable(System)
 		
-		String envName = System.getProperty("env", "qa");
+		String envName = System.getProperty("env", "prod");
 		System.out.println("Running test cases on env: "+ envName);
 		String fileName = "config_"+envName+".properties";//config_qa.properties
 		
