@@ -23,12 +23,14 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                bat '''
-                    docker build -t $env:DOCKER_IMAGE .
-                '''
-            }
-        }
+    		steps {
+       	 		powershell '''
+		            echo "DOCKER_IMAGE is: $env:DOCKER_IMAGE"
+		            docker version
+		            docker build -t "$env:DOCKER_IMAGE" .
+        			'''
+		    }
+		}
 
         stage('Push Docker Image to Docker Hub') {
             steps {
@@ -37,7 +39,7 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    bat '''
+                    powershell '''
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
 						echo "DOCKER_PASS: $env:DOCKER_PASS"
 						echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
