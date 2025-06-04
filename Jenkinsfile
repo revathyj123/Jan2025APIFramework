@@ -41,6 +41,7 @@ pipeline {
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
 						echo "DOCKER_PASS: $env:DOCKER_PASS"
 						echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
+						echo "DOCKER_IMAGE: ${env.DOCKER_IMAGE}"
 						docker push "${env.DOCKER_IMAGE}"
 						'''
                 }
