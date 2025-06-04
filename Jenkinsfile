@@ -34,7 +34,7 @@ pipeline {
                 )]) {
                     powershell '''
                         echo "Logging into Docker Hub..."
-                        docker login -u $env:DOCKER_USER -p $env:DOCKER_PASS
+                        docker login -u $env:DOCKER_USER -p $env:DOCKER_PASS --password-stdin
                         docker push $env:DOCKER_IMAGE
                     '''
                 }
