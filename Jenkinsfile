@@ -6,14 +6,14 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = "naveenkhunteta/jan2025apiframework:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "jrevathy82/jan2025apiframework:${BUILD_NUMBER}"
         DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/naveenanimation20/Jan2025APIFramework.git'
+                git 'https://github.com/revathyj123/Jan2025APIFramework.git'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh '''
+                    bat '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                         docker push ${DOCKER_IMAGE}
                        '''
@@ -48,7 +48,7 @@ pipeline {
         stage('Run Sanity Tests on Dev') {
          steps {
            script {
-            def status = sh(
+            def status = bat(
                 script: """
                     docker run --rm -v \$WORKSPACE:/app -w /app ${DOCKER_IMAGE} \
                     mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
@@ -121,7 +121,7 @@ pipeline {
         stage('Run Sanity Tests on Stage') {
             steps {
                 script {
-                    def status = sh(
+                    def status = bat(
                         script: """
                     			docker run --rm -v \$WORKSPACE:/app -w /app ${DOCKER_IMAGE} \
                     			mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
@@ -158,7 +158,7 @@ pipeline {
         stage('Run Sanity Tests on Prod') {
             steps {
                 script {
-                    def status = sh(
+                    def status = bat(
                         script: """
                     			docker run --rm -v \$WORKSPACE:/app -w /app ${DOCKER_IMAGE} \
                     			mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml -Denv=prod
