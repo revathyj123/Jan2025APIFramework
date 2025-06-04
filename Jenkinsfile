@@ -26,7 +26,7 @@ pipeline {
     		steps {
        	 		powershell '''
 		            echo "DOCKER_IMAGE is: $env:DOCKER_IMAGE"
-		            docker version
+		            echo docker build -t "$env:DOCKER_IMAGE" .
 		            docker build -t "$env:DOCKER_IMAGE" .
         			'''
 		    }
@@ -41,7 +41,7 @@ pipeline {
 		            usernameVariable: 'DOCKER_USER',
 		            passwordVariable: 'DOCKER_PASS'
 		        )]) {
-		            powershell '''
+					powershell '''
 		                echo "DOCKER_USER: $env:DOCKER_USER"
 		                echo "DOCKER_PASS: [hidden for security]"
 		                
