@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "jrevathy82/jan2025apiframework:${env.BUILD_NUMBER}"
+        echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
         DOCKER_CREDENTIALS_ID = 'dockerhub_credentials'
     }
 
@@ -34,7 +35,8 @@ pipeline {
                 )]) {
                     powershell '''
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
-						echo "DOCKER_PASS: $env:DOCKER_PASS"'''
+						echo "DOCKER_PASS: $env:DOCKER_PASS"
+						'''
                 }
             }
         }
