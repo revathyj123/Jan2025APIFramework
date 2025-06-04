@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE} ."
+                bat "docker build -t ${DOCKER_IMAGE} ."
             }
         }
 
@@ -72,7 +72,7 @@ pipeline {
         stage('Run Regression Tests on QA') {
             steps {
                 script {
-                    def status = sh(
+                    def status = bat(
                         script: """
                   				  docker run --rm -v \$WORKSPACE:/app -w /app ${DOCKER_IMAGE} \
                   				  mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv=prod
