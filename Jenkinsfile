@@ -46,13 +46,11 @@ pipeline {
 		                echo "DOCKER_PASS: [hidden for security]"
 		                
 		                # Securely passing credentials to Docker
-		                $env:DOCKER_PASS | Out-File -Encoding ascii -FilePath "password.txt"
-		                docker login -u $env:DOCKER_USER --password-stdin < password.txt
-		                Remove-Item "password.txt"
+		                 echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
 		
 		                # Pushing the image
 		                echo "DOCKER_IMAGE: $env:DOCKER_IMAGE"
-		                docker push $env:DOCKER_IMAGE
+		                echo docker push $env:DOCKER_IMAGE
 		            '''
 		        }
 		    }
