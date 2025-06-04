@@ -24,7 +24,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                powershell '''
+                bat '''
                     docker build -t $env:DOCKER_IMAGE .
                 '''
             }
@@ -37,7 +37,7 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    powershell '''
+                    bat '''
 	                    echo "DOCKER_USER: $env:DOCKER_USER"
 						echo "DOCKER_PASS: $env:DOCKER_PASS"
 						echo "$env:DOCKER_PASS" | docker login -u "$env:DOCKER_USER" --password-stdin
